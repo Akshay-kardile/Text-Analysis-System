@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis History</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f8; margin: 0; padding: 0; }
+        .container { max-width: 1000px; margin: 40px auto; background: white; padding: 30px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        h1 { color: #222; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: left; }
+        th { background: #1f6feb; color: white; }
+        tr:nth-child(even) { background: #f9fafb; }
+        a { text-decoration: none; color: white; background: #444; padding: 10px 16px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Saved Analysis History</h1>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Input Text</th>
+                    <th>Sentiment</th>
+                    <th>Category</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

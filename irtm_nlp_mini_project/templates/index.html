@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 34px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 15px;
+            font-size: 17px;
+            border: 1px solid #d0d7de;
+            border-radius: 12px;
+            resize: none;
+            outline: none;
+            margin-top: 20px;
+        }
+
+        textarea:focus {
+            border-color: #1f6feb;
+        }
+
+        .btn-group {
+            margin-top: 18px;
+            display: flex;
+            gap: 12px;
+        }
+
+        button, .link-btn {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button {
+            background: #1f6feb;
+            color: white;
+        }
+
+        .link-btn {
+            background: #333;
+            color: white;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 14px;
+            background: #eef4ff;
+        }
+
+        .result h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1e3a8a;
+            font-weight: bold;
+        }
+
+        .error {
+            margin-top: 20px;
+            color: red;
+            font-weight: bold;
+        }
+
+        .input-text {
+            margin-top: 10px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Analyzer</h1>
+
+        <form method="POST">
+            <textarea name="text" id="text" placeholder="Enter your text here..."></textarea>
+
+            <div class="btn-group">
+                <button type="submit">Analyze</button>
+                <a class="link-btn" href="{{ url_for('history') }}">History</a>
+            </div>
+        </form>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if result %}
+            <div class="result">
+                <h3>Result</h3>
+                <div class="input-text"><strong>Text:</strong> {{ result.text }}</div>
+                <span class="tag">Sentiment: {{ result.sentiment }}</span>
+                <span class="tag">Category: {{ result.category }}</span>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
